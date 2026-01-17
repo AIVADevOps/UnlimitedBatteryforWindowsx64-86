@@ -1,0 +1,80 @@
+==================================================
+UXTU Ultra Efficiency - 30W MAX BATTERY PROFILE
+AMD Ryzen 7 7735HS (Silicon Lottery Winner)
+==================================================
+Erstellt: 2026-01-14
+Ergebnis: ~7-8h Battery Life (Max Efficiency)
+==================================================
+
+### APU TEMPERATURE TUNING ###
+Temperature Limit (C):        70
+Skin Temperature Limit (C):   38
+
+### APU POWER TUNING ###
+STAPM Power Limit (W):        30
+Slow Power Limit (W):         30
+Slow Boost Duration (s):      5
+Fast Power Limit (W):         45
+Fast Boost Duration (s):      3
+
+### APU VRM TUNING ###
+CPU TDC Limit (A):            40
+CPU EDC Limit (A):            55
+SoC TDC Limit (A):            25
+SoC EDC Limit (A):            35
+GFX TDC Limit (A):            35
+GFX EDC Limit (A):            50
+
+### iGPU TUNING ###
+iGPU Clock (MHz):             1700
+
+### AMD CURVE OPTIMISER (UNDERVOLT) ###
+All Core Offset:              -50
+iGPU Offset:                  -50
+
+### AMD BOOST PROFILE ###
+Boost Profile:                Power Saving
+
+### WINDOWS POWER MODE ###
+Power Mode:                   Best Power Efficiency
+
+==================================================
+VERGLEICH ALLER PROFILE
+==================================================
+                    STAPM   Battery   Performance
+Stock:              45W     2-3h      100%
+Efficiency++:       35W     6-7h      ~95%
+Ultra Efficiency:   30W     7-8h      ~85%
+
+==================================================
+WANN WELCHES PROFIL?
+==================================================
+Efficiency++ (35W):
+  - Browser, YouTube 4K, Cloud AI Coding
+  - Normale taegliche Nutzung
+  - Beste Balance Performance/Battery
+
+Ultra Efficiency (30W):
+  - Nur Text/Docs/Reading
+  - Meetings, Zoom Calls
+  - Maximale Akkulaufzeit noetig
+  - Unterwegs ohne Steckdose
+
+==================================================
+UXTU AUTOMATIONS (VORSCHLAG)
+==================================================
+Preset on Battery Charge:     PM - Performance Preset
+Preset on Battery Discharge:  Efficiency++ (oder Ultra Efficiency)
+Preset on System Resume:      Efficiency++
+
+Tipp: Manuell zwischen Efficiency++ und Ultra Efficiency
+      wechseln je nach Situation
+
+==================================================
+HINWEISE
+==================================================
+- Undervolt -50/-50 bleibt gleich (Silicon-abhaengig)
+- Bei 30W kann Multicore-Last etwas langsamer sein
+- Single-Core/Browser kaum Unterschied
+- iGPU 1700MHz bleibt - 4K YouTube funktioniert
+==================================================

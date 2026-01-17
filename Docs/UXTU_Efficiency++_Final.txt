@@ -1,0 +1,120 @@
+==================================================
+UXTU Efficiency++ v6 - FINAL OPTIMIZED PROFILE
+AMD Ryzen 7 7735HS (Silicon Lottery Winner)
+==================================================
+Erstellt: 2026-01-14
+Ergebnis: ~6-8h Battery Life, Smooth 165Hz UX
+==================================================
+
+### APU TEMPERATURE TUNING ###
+Temperature Limit (C):        70
+Skin Temperature Limit (C):   38
+
+### APU POWER TUNING ###
+STAPM Power Limit (W):        30
+Slow Power Limit (W):         30
+Slow Boost Duration (s):      5
+Fast Power Limit (W):         50
+Fast Boost Duration (s):      3
+
+### APU VRM TUNING ###
+CPU TDC Limit (A):            40
+CPU EDC Limit (A):            55
+SoC TDC Limit (A):            25
+SoC EDC Limit (A):            35
+GFX TDC Limit (A):            35
+GFX EDC Limit (A):            50
+
+### iGPU TUNING ###
+iGPU Clock (MHz):             1700
+
+### AMD CURVE OPTIMISER (UNDERVOLT) ###
+All Core Offset:              -50
+iGPU Offset:                  -50
+
+### AMD BOOST PROFILE ###
+Boost Profile:                Power Saving
+
+### WINDOWS POWER MODE ###
+Power Mode:                   Best Power Efficiency
+
+### ADDITIONAL SETTINGS ###
+UXTU Super Resolution:        Off
+Radeon Graphics Options:      Off
+Display Refresh Rate:         System Controlled (165Hz)
+
+==================================================
+DESIGN PHILOSOPHY
+==================================================
+- 30W STAPM/Slow: Niedrig fuer sustained Battery
+- 50W Fast: Genug Headroom fuer Bursts (App oeffnen, etc.)
+- iGPU 1700MHz: Smooth 165Hz + 4K YouTube VP9
+- -50/-50 Undervolt: Silicon Lottery Winner (Top 5-10%)
+
+==================================================
+UXTU AUTOMATIONS
+==================================================
+Preset on Battery Charge:     PM - Performance Preset
+Preset on Battery Discharge:  Efficiency++
+Preset on System Resume:      Efficiency++
+
+==================================================
+WINDOWS POWER PLAN (AMD Battery Max)
+==================================================
+Max CPU State (DC):           99%
+Boost Mode (DC):              Disabled
+Core Parking Max (DC):        25%
+PCI Express ASPM (DC):        Maximum Power Savings
+AMD Power Slider (DC):        Akkusparmodus
+
+PowerShell Command (Admin):
+powercfg -setdcvalueindex 11111111-2222-3333-4444-555566667777 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 99
+powercfg -setactive 11111111-2222-3333-4444-555566667777
+
+==================================================
+REGISTRY TWEAKS (PERMANENT)
+==================================================
+Chrome.exe:         BelowNormal Priority + Low IO
+Discord.exe:        BelowNormal Priority + Low IO
+Spotify.exe:        BelowNormal Priority + Low IO
+
+Registry Pfad:
+HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\
+  Image File Execution Options\[app].exe\PerfOptions
+  - CpuPriorityClass: 5 (BelowNormal)
+  - IoPriority: 1 (Low)
+
+==================================================
+CHROME SETTINGS
+==================================================
+- ANGLE Backend: D3D9 (fuer 165Hz)
+- enhanced-h264ify: VP8/AV1 blocked, VP9 allowed
+- Resultat: 4K YouTube smooth
+
+==================================================
+VERGLEICH ALLER VERSIONEN
+==================================================
+                    STAPM   Fast    Battery   Performance
+Stock:              45W     65W     2-3h      100%
+Efficiency++ v5:    35W     54W     6-7h      ~95%
+Efficiency++ v6:    30W     50W     6-8h      ~90%
+
+==================================================
+FILES
+==================================================
+- C:\Users\abtel\Documents\UXTU_Efficiency++_Final.txt
+- C:\Users\abtel\Documents\UXTU_UltraEfficiency_30W.txt
+- C:\Users\abtel\ChromeEfficiency.reg
+- C:\Users\abtel\SpotifyDiscordEfficiency.reg
+- C:\Users\abtel\SetEfficiencyMode.ps1
+- C:\Users\abtel\BatteryOptimize.ps1
+
+==================================================
+HINWEISE
+==================================================
+- Undervolt -50/-50 ist sehr aggressiv (Top 5-10% Silicon)
+- Bei Instabilitaet: Zurueck auf -40/-30
+- UXTU muss im Autostart sein
+- Profil wird automatisch bei Akkubetrieb aktiviert
+- iGPU 1700MHz mit -50 Undervolt = Golden Sample
+==================================================

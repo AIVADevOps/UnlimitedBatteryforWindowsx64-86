@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; ENERGY SAVER ALWAYS ON
+; Forces Windows Energy Saver to be permanently enabled
+; ================================================
+
+; Policy: Force Energy Saver On
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\EnergySaver]
+"EnableEnergySaver"=dword:00000001
+
+; EcoModeState: Enable for all users
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"EcoModeState"=dword:00000001

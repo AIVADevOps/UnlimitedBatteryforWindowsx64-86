@@ -1,0 +1,74 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; DEEP BATTERY TWEAKS - RAM & CPU Optimization
+; ================================================
+
+; === WIDGETS DEAKTIVIEREN ===
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Dsh]
+"AllowNewsAndInterests"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"TaskbarDa"=dword:00000000
+
+; === SYSTEM RESPONSIVENESS ===
+; 0 = 100% CPU fuer Vordergrund-Apps (statt 80%)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000000
+
+; === MMCSS DEAKTIVIEREN (Multimedia Class Scheduler) ===
+; Spart CPU-Zyklen wenn keine Multimedia-Apps laufen
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"NoLazyMode"=dword:00000001
+"AlwaysOn"=dword:00000000
+
+; === MEMORY MANAGEMENT OPTIMIERUNG ===
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000001
+"LargeSystemCache"=dword:00000000
+"ClearPageFileAtShutdown"=dword:00000000
+
+; === PREFETCH/SUPERFETCH KOMPLETT AUS ===
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
+"EnablePrefetcher"=dword:00000000
+"EnableSuperfetch"=dword:00000000
+"EnableBoottrace"=dword:00000000
+
+; === WEITERE IFEO - Teams, OneDrive, Edge ===
+; (Terminal bleibt performant - nicht inkludiert)
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Teams.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Teams.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ms-teams.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ms-teams.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\OneDrive.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\OneDrive.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+; === NETZWERK OPTIMIERUNG ===
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"autodisconnect"=dword:ffffffff
+"Size"=dword:00000003
+
+; === NTFS OPTIMIERUNG ===
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+"NtfsDisableLastAccessUpdate"=dword:80000003
+"NtfsDisable8dot3NameCreation"=dword:00000001
+
+; ================================================

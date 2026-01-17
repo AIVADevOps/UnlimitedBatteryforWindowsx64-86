@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; DEV TOOLS EFFICIENCY - VS Code, Node.js, Antigravity
+; Setzt Prozesse auf BelowNormal Priority + Low IO
+; Source: IFEO (Image File Execution Options)
+; ================================================
+
+; --- VS Code ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Code.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Code.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+; --- Node.js ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\node.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\node.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+; --- Antigravity (Electron App) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Antigravity.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Antigravity.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+; --- Electron (Generic) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\electron.exe]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\electron.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000005
+"IoPriority"=dword:00000001
+
+; ================================================
+; Priority Classes:
+; 1 = Idle
+; 5 = BelowNormal (weniger CPU wenn andere Apps brauchen)
+; 8 = Normal
+; 13 = AboveNormal
+; 24 = High
+;
+; IoPriority:
+; 0 = Very Low
+; 1 = Low
+; 2 = Normal
+; ================================================

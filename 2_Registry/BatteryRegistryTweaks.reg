@@ -1,0 +1,51 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; BATTERY REGISTRY TWEAKS
+; ================================================
+
+; --- Disable Windows Search Indexer on Battery ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Search]
+"SetupCompletedSuccessfully"=dword:00000000
+
+; --- Reduce Timer Resolution (less wakeups) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power]
+"CoalescingTimerInterval"=dword:00000000
+
+; --- Disable Background Apps Global ---
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications]
+"GlobalUserDisabled"=dword:00000001
+
+; --- Disable Telemetry/Diagnostics ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]
+"AllowTelemetry"=dword:00000000
+
+; --- Disable GameDVR (Background Recording) ---
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowGameDVR"=dword:00000000
+
+; --- Disable Superfetch/SysMain (less disk activity) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain]
+"Start"=dword:00000004
+
+; --- Disable Windows Tips/Suggestions ---
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager]
+"SubscribedContent-338389Enabled"=dword:00000000
+"SubscribedContent-310093Enabled"=dword:00000000
+"SoftLandingEnabled"=dword:00000000
+
+; --- Reduce Multimedia Streaming Quality on Battery ---
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\VideoSettings]
+"VideoQualityOnBattery"=dword:00000001
+
+; --- Network Throttling Index (reduce network overhead) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"NetworkThrottlingIndex"=dword:ffffffff
+"SystemResponsiveness"=dword:00000014
+
+; --- Disable Cortana ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search]
+"AllowCortana"=dword:00000000

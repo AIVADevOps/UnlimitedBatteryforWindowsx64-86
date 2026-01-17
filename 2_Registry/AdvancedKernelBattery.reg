@@ -1,0 +1,88 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; ADVANCED KERNEL BATTERY OPTIMIZATIONS
+; Deep System-Level Tweaks
+; ================================================
+
+; --- Timer Coalescing (Reduce CPU Wake-ups) ---
+; Higher value = more coalescing = fewer wake-ups = better battery
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power]
+"CoalescingTimerInterval"=dword:00000032
+
+; --- Power Throttling (KEEP ENABLED for battery) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling]
+"PowerThrottlingOff"=dword:00000000
+
+; --- MMCSS - Reserve MORE CPU for background/idle ---
+; Higher = more for low-priority = less CPU spikes
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000064
+"NetworkThrottlingIndex"=dword:ffffffff
+"NoLazyMode"=dword:00000000
+
+; --- Disable MMCSS GPU/Priority Boost (saves power) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Low Latency]
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+
+; --- Kernel Boot Options (Efficient) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel]
+"DisableExceptionChainValidation"=dword:00000000
+"KernelSEHOPEnabled"=dword:00000001
+
+; --- Memory Management (Less aggressive paging) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000000
+"LargeSystemCache"=dword:00000000
+"ClearPageFileAtShutdown"=dword:00000000
+
+; --- Prefetch/Superfetch Optimization ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
+"EnablePrefetcher"=dword:00000001
+"EnableSuperfetch"=dword:00000000
+"EnableBootTrace"=dword:00000000
+
+; --- File System (NTFS) - Less Overhead ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+"NtfsDisableLastAccessUpdate"=dword:80000003
+"NtfsDisable8dot3NameCreation"=dword:00000001
+"NtfsMemoryUsage"=dword:00000001
+
+; --- Kernel Power Settings ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"HibernateEnabled"=dword:00000001
+"EnergyEstimationEnabled"=dword:00000001
+"CsEnabled"=dword:00000001
+"PlatformAoAcOverride"=dword:00000000
+
+; --- IRQ Priority (Lower = Less CPU interrupt overhead) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]
+"Win32PrioritySeparation"=dword:00000026
+"IRQ8Priority"=dword:00000001
+
+; --- Network Stack Power Savings ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+"EnableWsd"=dword:00000000
+"DisableTaskOffload"=dword:00000000
+"EnableTCPA"=dword:00000001
+
+; --- USB Power Management ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USB]
+"DisableSelectiveSuspend"=dword:00000000
+
+; --- Storage Power Management ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device]
+"EnableHIPM"=dword:00000001
+"EnableDIPM"=dword:00000001
+"EnableAN"=dword:00000001
+
+; --- Disable Idle Resiliency Diagnostic (Less overhead) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Diagnostics\Performance]
+"DisableDiagnosticTracing"=dword:00000001
+
+; --- Platform Timer Resolution (Default = battery friendly) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel]
+"GlobalTimerResolutionRequests"=dword:00000001
